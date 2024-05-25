@@ -8,15 +8,14 @@ class HTMLLoader(BaseLoader):
         except ImportError:
             raise ImportError("bs4 is not installed\nPlease write on the commend line > pip install bs4")
 
+        input_path_extension:str = os.path.splitext(path)[1]
+        if input_path_extension != ".html":
+            raise NameError("The file extension is not .html")
         self.path = path
 
 
     def load(self) -> str:
         from bs4 import BeautifulSoup, FeatureNotFound
-
-        extension:str = os.path.splitext(self.path)[1]
-        if extension != ".html":
-            raise NameError("The file extension is not .html")
         
         with open(self.path, "r", encoding="utf-8") as file:
             try:
