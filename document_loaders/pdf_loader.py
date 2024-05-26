@@ -1,4 +1,5 @@
 from LangChainJ.document_loaders.base_loader import BaseLoader
+from LangChainJ.documents import Document
 import os
 
 class PDFLoader(BaseLoader):
@@ -13,12 +14,15 @@ class PDFLoader(BaseLoader):
             raise NameError("The file extension is not .pdf")
         self.path = path
 
-    def load(self) -> str:
+    def load(self) -> Document:
         from pypdf import PdfReader
 
         reader:PdfReader = PdfReader(self.path)
-        text = ""
+        # text = ""
+        result_str = []
         for page in reader.pages:
-            text += page.extract_text()
+            # text += page.extract_text()
+            result_str.append(page.extract_text())
         
-        return text
+        result = "".join(result_str)
+        return Document(result)

@@ -1,4 +1,5 @@
 from LangChainJ.document_loaders.base_loader import BaseLoader
+from LangChainJ.documents import Document
 import importlib
 import os
 
@@ -34,7 +35,7 @@ class DirectoryLoader(BaseLoader):
         self.path = path
 
 
-    def load(self):
+    def load(self) -> Document:
         if is_sup(self.glob, "txt"):
             result_str = []
             with open(self.path, "r", encoding="utf-8") as file:
@@ -44,7 +45,7 @@ class DirectoryLoader(BaseLoader):
                     if not line: break
 
             result_str = ''.join(result_str)
-            return result_str
+            return Document(result_str)
         
         else:
             module_name = f"{modify_extension(self.glob)}_loader"
@@ -57,6 +58,7 @@ class DirectoryLoader(BaseLoader):
         
 
 if __name__ == "__main__":
+    print(repr(DirectoryLoader("c:\\temp\\LangChainJ\\test_file\\test.txt", ".txt").load()))
     # print(DirectoryLoader("c:\\temp\\LangChainJ\\test_file\\akaka.html", ".html").load())
     # print(DirectoryLoader("c:\\temp\\LangChainJ\\test_file\\dsci_06_데이터_시각화.pdf", ".pdf").load())
     pass

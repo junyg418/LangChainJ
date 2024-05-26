@@ -1,4 +1,5 @@
 from LangChainJ.document_loaders.base_loader import BaseLoader
+from LangChainJ.documents import Document
 import os
 
 class HTMLLoader(BaseLoader):
@@ -14,7 +15,7 @@ class HTMLLoader(BaseLoader):
         self.path = path
 
 
-    def load(self) -> str:
+    def load(self) -> Document:
         from bs4 import BeautifulSoup, FeatureNotFound
         
         with open(self.path, "r", encoding="utf-8") as file:
@@ -25,7 +26,7 @@ class HTMLLoader(BaseLoader):
                     "lxml parser is not installed\nPlease write on the commend line > pip install lxml"
                 )
         html_str:str = soup.get_text()
-        return html_str
+        return Document(html_str)
 
 if __name__ == "__main__":
     print(repr(HTMLLoader("c:\\temp\\akaka.html").load()))

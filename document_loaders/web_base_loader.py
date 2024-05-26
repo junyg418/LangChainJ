@@ -1,4 +1,6 @@
 from LangChainJ.document_loaders.base_loader import BaseLoader
+from LangChainJ.documents import Document
+
 
 def check_module(module:str):
     try:
@@ -17,7 +19,7 @@ class WebBaseLoader(BaseLoader):
 
         self.web_path = web_path
 
-    def load(self):
+    def load(self) -> Document:
         from bs4 import BeautifulSoup
         import requests
         
@@ -25,4 +27,5 @@ class WebBaseLoader(BaseLoader):
         request.raise_for_status()
         
         soup = BeautifulSoup(request.text, 'lxml')
-        return soup.get_text()
+        result = soup.get_text()
+        return Document(result)
