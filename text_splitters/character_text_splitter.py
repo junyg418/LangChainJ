@@ -8,9 +8,9 @@ class CharacterTextSplitter:
                  ) -> None:
         self.separator = separator
 
-    def split_text(self, text:str):
+    def split_text(self, text:str) -> list[Document]:
         if self.separator:
-            splits = re.split(self.separator, text)
+            splits:list[str] = re.split(self.separator, text)
         else:
-            splits = list(text)
-        return [data for data in splits if data != ""]
+            splits:list[str] = list(text)
+        return [Document(data) for data in splits if data != ""]
