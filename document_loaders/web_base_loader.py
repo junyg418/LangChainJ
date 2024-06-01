@@ -1,12 +1,8 @@
-from LangChainJ.document_loaders.base_loader import BaseLoader
-from LangChainJ.documents import Document
+from LangChainJ.document_loaders import BaseLoader
+from LangChainJ.documents import Document, check_module
 
 
-def check_module(module:str):
-    try:
-        __import__(module)
-    except ImportError:
-        raise ModuleNotFoundError(f"{module} is not installed\nPlease write on the commend line > pip install {module}")
+
 
 class WebBaseLoader(BaseLoader):
     def __init__(self, web_path:str) -> None:

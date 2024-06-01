@@ -8,3 +8,9 @@ class Document:
     
     def __repr__(self) -> str:
         return self.page_content
+    
+def check_module(module:str):
+    try:
+        __import__(module)
+    except ImportError:
+        raise ModuleNotFoundError(f"{module} is not installed\nPlease write on the commend line > pip install {module}")

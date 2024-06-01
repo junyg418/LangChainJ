@@ -74,6 +74,8 @@ class RecursiveCharacterTextSplitter:
                 
                 final_chunk.append("".join(before_final))
                 good_chunk = []
+                
+        final_chunk = [Document(text) for text in final_chunk]
         return final_chunk
 
 
