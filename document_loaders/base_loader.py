@@ -1,7 +1,8 @@
 from abc import ABC
+from LangChainJ.documents import Document
 
 class BaseLoader(ABC):
-    def load(self):
+    def load(self) -> Document:
         pass
 
     def load_and_split(self):
@@ -12,4 +13,4 @@ class BaseLoader(ABC):
         
         text_splitter = CharacterTextSplitter()
         doc = self.load()
-        return text_splitter.split_text(doc)
+        return text_splitter.split_text(doc.page_content)
