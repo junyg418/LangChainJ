@@ -29,3 +29,8 @@ class WebBaseLoader(BaseLoader):
         soup = BeautifulSoup(request.text, 'lxml')
         result = soup.get_text()
         return Document(result)
+    
+if __name__ == "__main__":
+    url = "https://rfriend.tistory.com/847"
+    loader = WebBaseLoader(url)
+    print(loader.load_and_split())
