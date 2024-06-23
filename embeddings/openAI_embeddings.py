@@ -1,7 +1,9 @@
+from chromadb.api.types import Embeddings
 from LangChainJ.documents import Document, check_module
+from chromadb import EmbeddingFunction
 import os
 
-class OpenAIEmbeddings:
+class OpenAIEmbeddings(EmbeddingFunction):
     def __init__(self):
         try:
             check_module("openai")
@@ -30,6 +32,9 @@ class OpenAIEmbeddings:
 
         result = [self.get_embedding(text, openai) for text in texts]
         return result
+    
+    # def __call__(self, input: Any) -> List[Sequence[float] | Sequence[int]]:
+    #     return super().__call__(input)
 
 
 # def normalize_l2(input_text):

@@ -29,4 +29,4 @@ class HTMLLoader(BaseLoader):
         return Document(html_str)
 
 if __name__ == "__main__":
-    print(repr(HTMLLoader("c:\\temp\\akaka.html").load()))
+    print(repr(HTMLLoader("c:\\temp\\LangChainJ\\test_file\\akaka.html").load_and_split()))

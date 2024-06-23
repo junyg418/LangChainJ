@@ -7,7 +7,10 @@ class Document:
         return self.page_content
     
     def __repr__(self) -> str:
-        return self.page_content
+        return repr(self.page_content)
+    
+    def __len__(self) -> int:
+        return len(self.page_content)
     
 def check_module(module:str):
     try:
