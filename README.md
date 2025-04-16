@@ -44,8 +44,10 @@ export OPENAI_API_KEY=your_openai_key
 ## 📌 사용 기술
 
 - Python 3.10+
+- OpneAI
 - OpenAI Embeddings
 - PyPDF2
+- ...
 
 ## 🤝 프로젝트 목적
 
